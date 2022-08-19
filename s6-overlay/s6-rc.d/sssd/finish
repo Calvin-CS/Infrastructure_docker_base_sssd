@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if test "$1" -eq 256 ; then
+  e=$((128 + $2))
+else
+  e="$1"
+fi
+
+#cat /etc/sssd/sssd.conf
+cat /var/log/sssd/*.log
+
+#nmap -sT -p389,636 adorn.ad.calvin.edu
+#nmap -sT -p389,636 adage.ad.calvin.edu
+#nmap -sT -p389,636 adhesion.ad.calvin.edu
+
+echo "$e" > /run/s6-linux-init-container-results/exitcode
