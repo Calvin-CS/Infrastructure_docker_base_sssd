@@ -3,8 +3,8 @@ LABEL maintainer="Chris Wieringa <cwieri39@calvin.edu>"
 
 # Set versions and platforms
 ARG S6_OVERLAY_VERSION=3.1.1.2
-ARG BUILDDATE=20220819-01
-ARG TZ=US/Michigan
+ARG BUILDDATE=20220915-01
+ARG TZ=America/Detroit
 
 # Do all run commands with bash
 SHELL ["/bin/bash", "-c"] 
