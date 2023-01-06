@@ -3,7 +3,7 @@ LABEL maintainer="Chris Wieringa <cwieri39@calvin.edu>"
 
 # Set versions and platforms
 ARG S6_OVERLAY_VERSION=3.1.1.2
-ARG BUILDDATE=20221214-01
+ARG BUILDDATE=20230106-1
 ARG TZ=America/Detroit
 
 # Do all run commands with bash
@@ -73,7 +73,7 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
     tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz && \
     rm -f /tmp/s6-overlay-*.tar.xz
 
-ENV S6_CMD_WAIT_FOR_SERVICES=1 S6_CMD_WAIT_FOR_SERVICES_MAXTIME=5000
+ENV S6_CMD_WAIT_FOR_SERVICES=1 S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
 
 ENTRYPOINT ["/init"]
 COPY s6-overlay/ /etc/s6-overlay
