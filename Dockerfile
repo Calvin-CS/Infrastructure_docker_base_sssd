@@ -3,7 +3,7 @@ LABEL maintainer="Chris Wieringa <cwieri39@calvin.edu>"
 
 # Set versions and platforms
 ARG S6_OVERLAY_VERSION=3.1.3.0
-ARG BUILDDATE=20230210-1
+ARG BUILDDATE=20230210-2
 ARG TZ=America/Detroit
 
 # Do all run commands with bash
@@ -92,3 +92,8 @@ ENV TZ=US/Michigan
 
 # Force set the TZ variable
 COPY --chmod=0755 inc/timezone.sh /etc/profile.d/timezone.sh
+
+# Cleanup misc files
+RUN rm -f /var/log/*.log && \
+    rm -f /var/log/lastlog && \
+    rm -f /var/log/faillog
