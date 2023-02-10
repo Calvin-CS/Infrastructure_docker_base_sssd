@@ -3,7 +3,7 @@ LABEL maintainer="Chris Wieringa <cwieri39@calvin.edu>"
 
 # Set versions and platforms
 ARG S6_OVERLAY_VERSION=3.1.3.0
-ARG BUILDDATE=20230210-2
+ARG BUILDDATE=20230210-3
 ARG TZ=America/Detroit
 
 # Do all run commands with bash
@@ -78,6 +78,15 @@ ENV S6_CMD_WAIT_FOR_SERVICES=1 S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
 ENTRYPOINT ["/init"]
 COPY s6-overlay/ /etc/s6-overlay
 
+# Install and configure rsyslog
+RUN apt update -y && \
+    DEBIAN_FRONTEND=noninteractive apt install -y rsyslog && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -f /etc/rsyslog.conf
+
+ADD https://raw.githubusercontent.com/Calvin-CS/Infrastructure_configs/main/rsyslog/rsyslog.conf /etc/
+RUN chmod 0644 /etc/rsyslog.conf
+
 # Locale configuration --------------------------------------------------------#
 RUN apt update -y && \
     DEBIAN_FRONTEND=noninteractive apt install -y locales && \
@@ -95,5 +104,4 @@ COPY --chmod=0755 inc/timezone.sh /etc/profile.d/timezone.sh
 
 # Cleanup misc files
 RUN rm -f /var/log/*.log && \
-    rm -f /var/log/lastlog && \
     rm -f /var/log/faillog
