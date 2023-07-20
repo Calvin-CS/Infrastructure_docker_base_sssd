@@ -7,7 +7,7 @@ else
 fi
 
 #cat /etc/sssd/sssd.conf
-cat /var/log/sssd/*.log
+#cat /var/log/sssd/*.log
 
 #nmap -sT -p389,636 adorn.ad.calvin.edu
 #nmap -sT -p389,636 adage.ad.calvin.edu
