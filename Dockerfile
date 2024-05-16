@@ -3,7 +3,7 @@ LABEL maintainer="Chris Wieringa <cwieri39@calvin.edu>"
 
 # Set versions and platforms
 ARG S6_OVERLAY_VERSION=3.1.6.2
-ARG BUILDDATE=20240423-1
+ARG BUILDDATE=20240516-1
 ARG TZ=America/Detroit
 
 # Do all run commands with bash
